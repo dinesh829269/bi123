@@ -411,8 +411,8 @@ static UniValue sendtoaddress(const JSONRPCRequest& request)
 
     // Amount
     CAmount nAmount = AmountFromValue(request.params[1]);
-    //if (nAmount <= 0)
-    //    throw JSONRPCError(RPC_TYPE_ERROR, "Invalid amount for send");
+    if (nAmount <= 0)
+       throw JSONRPCError(RPC_TYPE_ERROR, "Invalid amount for send");
 
     // Wallet comments
     mapValue_t mapValue;
@@ -928,8 +928,8 @@ static UniValue sendmany(const JSONRPCRequest& request)
 
         CScript scriptPubKey = GetScriptForDestination(dest);
         CAmount nAmount = AmountFromValue(sendTo[name_]);
-        //if (nAmount <= 0)
-        //    throw JSONRPCError(RPC_TYPE_ERROR, "Invalid amount for send");
+        if (nAmount <= 0)
+           throw JSONRPCError(RPC_TYPE_ERROR, "Invalid amount for send");
 
         bool fSubtractFeeFromAmount = false;
         for (unsigned int idx = 0; idx < subtractFeeFromAmount.size(); idx++) {
