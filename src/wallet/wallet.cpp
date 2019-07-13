@@ -2907,19 +2907,19 @@ bool CWallet::CreateTransaction(interfaces::Chain::Lock& locked_chain, const std
                     // Include the fee cost for outputs. Note this is only used for BnB right now
                     coin_selection_params.tx_noinputs_size += ::GetSerializeSize(txout, PROTOCOL_VERSION);
 
-                    if (IsDust(txout, chain().relayDustFee()))
-                    {
-                        if (recipient.fSubtractFeeFromAmount && nFeeRet > 0)
-                        {
-                            if (txout.nValue < 0)
-                                strFailReason = _("The transaction amount is too small to pay the fee");
-                            else
-                                strFailReason = _("The transaction amount is too small to send after the fee has been deducted");
-                        }
-                        else
-                            strFailReason = _("Transaction amount too small");
-                        return false;
-                    }
+                    // if (IsDust(txout, chain().relayDustFee()))
+                    // {
+                    //     if (recipient.fSubtractFeeFromAmount && nFeeRet > 0)
+                    //     {
+                    //         if (txout.nValue < 0)
+                    //             strFailReason = _("The transaction amount is too small to pay the fee");
+                    //         else
+                    //             strFailReason = _("The transaction amount is too small to send after the fee has been deducted");
+                    //     }
+                    //     else
+                    //         strFailReason = _("Transaction amount too small");
+                    //     return false;
+                    // }
                     txNew.vout.push_back(txout);
                 }
 
