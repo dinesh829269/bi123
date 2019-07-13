@@ -2937,18 +2937,18 @@ bool CWallet::CreateTransaction(interfaces::Chain::Lock& locked_chain, const std
                         coin_selection_params.change_spend_size = (size_t)change_spend_size;
                     }
                     coin_selection_params.effective_fee = nFeeRateNeeded;
-                    if (!SelectCoins(vAvailableCoins, nValueToSelect, setCoins, nValueIn, coin_control, coin_selection_params, bnb_used))
-                    {
-                        // If BnB was used, it was the first pass. No longer the first pass and continue loop with knapsack.
-                        if (bnb_used) {
-                            coin_selection_params.use_bnb = false;
-                            continue;
-                        }
-                        else {
-                            strFailReason = _("Insufficient funds");
-                            return false;
-                        }
-                    }
+                    // if (!SelectCoins(vAvailableCoins, nValueToSelect, setCoins, nValueIn, coin_control, coin_selection_params, bnb_used))
+                    // {
+                    //     // If BnB was used, it was the first pass. No longer the first pass and continue loop with knapsack.
+                    //     if (bnb_used) {
+                    //         coin_selection_params.use_bnb = false;
+                    //         continue;
+                    //     }
+                    //     else {
+                    //         strFailReason = _("Insufficient funds");
+                    //         return false;
+                    //     }
+                    // }
                 } else {
                     bnb_used = false;
                 }
