@@ -2767,7 +2767,7 @@ bool CWallet::CreateTransaction(const std::vector<CRecipient>& vecSend, CWalletT
                     txNew.vout.push_back(txout);
                 }
 
-                Choose coins to use
+                //Choose coins to use
                 if (pick_new_inputs) {
                     nValueIn = 0;
                     setCoins.clear();
