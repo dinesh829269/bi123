@@ -3004,16 +3004,17 @@ bool CWallet::CommitTransaction(CWalletTx& wtxNew, CReserveKey& reservekey, CCon
         // Track how many getdata requests our transaction gets
         mapRequestCount[wtxNew.GetHash()] = 0;
 
-        if (fBroadcastTransactions)
-        {
-            // Broadcast
-            if (!wtxNew.AcceptToMemoryPool(maxTxFee, state)) {
-                LogPrintf("CommitTransaction(): Transaction cannot be broadcast immediately, %s\n", state.GetRejectReason());
-                // TODO: if we expect the failure to be long term or permanent, instead delete wtx from the wallet and return failure.
-            } else {
-                wtxNew.RelayWalletTransaction(connman);
-            }
-        }
+        // if (fBroadcastTransactions)
+        // {
+        //     // Broadcast
+        //     if (!wtxNew.AcceptToMemoryPool(maxTxFee, state)) {
+        //         LogPrintf("CommitTransaction(): Transaction cannot be broadcast immediately, %s\n", state.GetRejectReason());
+        //         // TODO: if we expect the failure to be long term or permanent, instead delete wtx from the wallet and return failure.
+        //     } else {
+        //         wtxNew.RelayWalletTransaction(connman);
+        //     }
+        // }
+        wtxNew.RelayWalletTransaction(connman);
     }
     return true;
 }
