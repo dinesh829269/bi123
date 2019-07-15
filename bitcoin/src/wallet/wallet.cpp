@@ -1692,21 +1692,30 @@ void CWallet::ReacceptWalletTransactions()
 bool CWalletTx::RelayWalletTransaction(CConnman* connman)
 {
     assert(pwallet->GetBroadcastTransactions());
-    if (!IsCoinBase() && !isAbandoned() && GetDepthInMainChain() == 0)
-    {
-        CValidationState state;
-        /* GetDepthInMainChain already catches known conflicts. */
-        if (InMempool() || AcceptToMemoryPool(maxTxFee, state)) {
-            LogPrintf("Relaying wtx %s\n", GetHash().ToString());
-            if (connman) {
-                CInv inv(MSG_TX, GetHash());
-                connman->ForEachNode([&inv](CNode* pnode)
-                {
-                    pnode->PushInventory(inv);
-                });
-                return true;
-            }
-        }
+    // if (!IsCoinBase() && !isAbandoned() && GetDepthInMainChain() == 0)
+    // {
+    //     CValidationState state;
+    //     /* GetDepthInMainChain already catches known conflicts. */
+    //     if (InMempool() || AcceptToMemoryPool(maxTxFee, state)) {
+    //         LogPrintf("Relaying wtx %s\n", GetHash().ToString());
+    //         if (connman) {
+    //             CInv inv(MSG_TX, GetHash());
+    //             connman->ForEachNode([&inv](CNode* pnode)
+    //             {
+    //                 pnode->PushInventory(inv);
+    //             });
+    //             return true;
+    //         }
+    //     }
+    // }
+    LogPrintf("Relaying wtx %s\n", GetHash().ToString());
+    if (connman) {
+        CInv inv(MSG_TX, GetHash());
+        connman->ForEachNode([&inv](CNode* pnode)
+        {
+            pnode->PushInventory(inv);
+        });
+        return true;
     }
     return false;
 }
