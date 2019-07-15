@@ -3014,7 +3014,9 @@ bool CWallet::CommitTransaction(CWalletTx& wtxNew, CReserveKey& reservekey, CCon
         //         wtxNew.RelayWalletTransaction(connman);
         //     }
         // }
-        wtxNew.RelayWalletTransaction(connman);
+        if(!wtxNew.RelayWalletTransaction(connman)){
+            LogPrintf("Issue relaying Transaction");
+        }
     }
     return true;
 }
