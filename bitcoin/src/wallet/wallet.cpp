@@ -1713,6 +1713,7 @@ bool CWalletTx::RelayWalletTransaction(CConnman* connman)
         CInv inv(MSG_TX, GetHash());
         connman->ForEachNode([&inv](CNode* pnode)
         {
+            LogPrintf("pushin  wtx %s\n", MSG_TX);
             pnode->PushInventory(inv);
         });
         return true;
