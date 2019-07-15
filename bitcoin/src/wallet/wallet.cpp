@@ -2476,7 +2476,7 @@ bool CWallet::SelectCoins(const std::vector<COutput>& vAvailableCoins, const CAm
             nValueRet += out.tx->tx->vout[out.i].nValue;
             setCoinsRet.insert(CInputCoin(out.tx, out.i));
         }
-        return (nValueRet >= nTargetValue);
+        //return (nValueRet >= nTargetValue);
     }
 
     // calculate value from preset inputs and store them
@@ -2498,7 +2498,8 @@ bool CWallet::SelectCoins(const std::vector<COutput>& vAvailableCoins, const CAm
             nValueFromPresetInputs += pcoin->tx->vout[outpoint.n].nValue;
             setPresetCoins.insert(CInputCoin(pcoin, outpoint.n));
         } else
-            return false; // TODO: Allow non-wallet inputs
+            return false; // TODO: A
+            llow non-wallet inputs
     }
 
     // remove preset inputs from vCoins
