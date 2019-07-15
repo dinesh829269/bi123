@@ -2768,15 +2768,15 @@ bool CWallet::CreateTransaction(const std::vector<CRecipient>& vecSend, CWalletT
                 }
 
                 // Choose coins to use
-                if (pick_new_inputs) {
-                    nValueIn = 0;
-                    setCoins.clear();
-                    if (!SelectCoins(vAvailableCoins, nValueToSelect, setCoins, nValueIn, &coin_control))
-                    {
-                        strFailReason = _("Insufficient funds");
-                        return false;
-                    }
-                }
+                // if (pick_new_inputs) {
+                //     nValueIn = 0;
+                //     setCoins.clear();
+                //     if (!SelectCoins(vAvailableCoins, nValueToSelect, setCoins, nValueIn, &coin_control))
+                //     {
+                //         strFailReason = _("Insufficient funds");
+                //         return false;
+                //     }
+                // }
 
                 const CAmount nChange = nValueIn - nValueToSelect;
 
