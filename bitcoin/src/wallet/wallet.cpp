@@ -2763,7 +2763,7 @@ bool CWallet::CreateTransaction(const std::vector<CRecipient>& vecSend, CWalletT
 
                     if (IsDust(txout, ::dustRelayFee))
                     {
-                        if (recipient.fSubtractFeeFromAmount && nFeeRet > 0)
+                        if (recipient.fSubtractFeeFromAmount && nFeeRet >= 0)
                         {
                             if (txout.nValue < 0)
                                 strFailReason = _("The transaction amount is too small to pay the fee");
@@ -2772,7 +2772,7 @@ bool CWallet::CreateTransaction(const std::vector<CRecipient>& vecSend, CWalletT
                         }
                         else
                             strFailReason = _("Transaction amount too small");
-                        return false;
+                        //return false;
                     }
                     txNew.vout.push_back(txout);
                 }
