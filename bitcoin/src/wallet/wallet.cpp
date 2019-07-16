@@ -2835,10 +2835,11 @@ bool CWallet::CreateTransaction(const std::vector<CRecipient>& vecSend, CWalletT
                 const uint32_t nSequence = coin_control.signalRbf ? MAX_BIP125_RBF_SEQUENCE : (CTxIn::SEQUENCE_FINAL - 1);
                 LogPrintf("Create transaction vin  line 2836 %d", nSequence);
                 for (const auto& coin : setCoins)
-                    LogPrintf("Create transaction vin line 2838 %s", coin.outpoint.ToString());
+                    
                     txNew.vin.push_back(CTxIn(coin.outpoint,CScript(),
                                               nSequence));
 
+                    LogPrintf("Create transaction vin line 2838 %s", coin.outpoint.ToString());
                 // Fill in dummy signatures for fee calculation.
                 if (!DummySignTx(txNew, setCoins)) {
                     strFailReason = _("Signing transaction failed");
