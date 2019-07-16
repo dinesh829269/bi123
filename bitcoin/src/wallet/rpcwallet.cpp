@@ -379,8 +379,8 @@ static void SendMoney(CWallet * const pwallet, const CTxDestination &address, CA
     CAmount curBalance = pwallet->GetBalance();
 
     // Check amount
-    if (nValue <= 0)
-        throw JSONRPCError(RPC_INVALID_PARAMETER, "Invalid amount");
+    // if (nValue <= 0)
+    //     throw JSONRPCError(RPC_INVALID_PARAMETER, "Invalid amount");
 
     // if (nValue > curBalance)
     //     throw JSONRPCError(RPC_WALLET_INSUFFICIENT_FUNDS, "Insufficient funds");
