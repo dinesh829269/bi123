@@ -457,8 +457,8 @@ UniValue sendtoaddress(const JSONRPCRequest& request)
 
     // Amount
     CAmount nAmount = AmountFromValue(request.params[1]);
-    if (nAmount <= 0)
-        throw JSONRPCError(RPC_TYPE_ERROR, "Invalid amount for send");
+    // if (nAmount <= 0)
+    //     throw JSONRPCError(RPC_TYPE_ERROR, "Invalid amount for send");
 
     // Wallet comments
     CWalletTx wtx;
@@ -836,8 +836,8 @@ UniValue movecmd(const JSONRPCRequest& request)
     std::string strFrom = AccountFromValue(request.params[0]);
     std::string strTo = AccountFromValue(request.params[1]);
     CAmount nAmount = AmountFromValue(request.params[2]);
-    if (nAmount <= 0)
-        throw JSONRPCError(RPC_TYPE_ERROR, "Invalid amount for send");
+    // if (nAmount <= 0)
+    //     throw JSONRPCError(RPC_TYPE_ERROR, "Invalid amount for send");
     if (request.params.size() > 3)
         // unused parameter, used to be nMinDepth, keep type-checking it though
         (void)request.params[3].get_int();
@@ -896,8 +896,8 @@ UniValue sendfrom(const JSONRPCRequest& request)
     if (!address.IsValid())
         throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid Bitcoin address");
     CAmount nAmount = AmountFromValue(request.params[2]);
-    if (nAmount <= 0)
-        throw JSONRPCError(RPC_TYPE_ERROR, "Invalid amount for send");
+    // if (nAmount <= 0)
+    //     throw JSONRPCError(RPC_TYPE_ERROR, "Invalid amount for send");
     int nMinDepth = 1;
     if (request.params.size() > 3)
         nMinDepth = request.params[3].get_int();
@@ -1025,8 +1025,8 @@ UniValue sendmany(const JSONRPCRequest& request)
 
         CScript scriptPubKey = GetScriptForDestination(address.Get());
         CAmount nAmount = AmountFromValue(sendTo[name_]);
-        if (nAmount <= 0)
-            throw JSONRPCError(RPC_TYPE_ERROR, "Invalid amount for send");
+        // if (nAmount <= 0)
+        //     throw JSONRPCError(RPC_TYPE_ERROR, "Invalid amount for send");
         totalAmount += nAmount;
 
         bool fSubtractFeeFromAmount = false;
