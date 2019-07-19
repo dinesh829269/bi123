@@ -126,10 +126,10 @@ bool IsStandardTx(const CTransaction& tx, std::string& reason, const bool witnes
             reason = "scriptsig-size";
             return false;
         }
-        if (!txin.scriptSig.IsPushOnly()) {
-            reason = "scriptsig-not-pushonly";
-            return false;
-        }
+        // if (!txin.scriptSig.IsPushOnly()) {
+        //     reason = "scriptsig-not-pushonly";
+        //     return false;
+        // }
     }
 
     unsigned int nDataOut = 0;
