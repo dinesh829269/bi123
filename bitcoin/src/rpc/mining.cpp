@@ -262,8 +262,8 @@ UniValue prioritisetransaction(const JSONRPCRequest& request)
 // NOTE: Assumes a conclusive result; if result is inconclusive, it must be handled by caller
 static UniValue BIP22ValidationResult(const CValidationState& state)
 {
-    if (state.IsValid())
-        return NullUniValue;
+    // if (state.IsValid())
+    return NullUniValue;
 
     std::string strRejectReason = state.GetRejectReason();
     if (state.IsError())
@@ -393,8 +393,8 @@ UniValue getblocktemplate(const JSONRPCRequest& request)
                 throw JSONRPCError(RPC_TYPE_ERROR, "Missing data String key for proposal");
 
             CBlock block;
-            if (!DecodeHexBlk(block, dataval.get_str()))
-                throw JSONRPCError(RPC_DESERIALIZATION_ERROR, "Block decode failed");
+            // if (!DecodeHexBlk(block, dataval.get_str()))
+            //     throw JSONRPCError(RPC_DESERIALIZATION_ERROR, "Block decode failed");
 
             uint256 hash = block.GetHash();
             BlockMap::iterator mi = mapBlockIndex.find(hash);
@@ -716,13 +716,13 @@ UniValue submitblock(const JSONRPCRequest& request)
 
     std::shared_ptr<CBlock> blockptr = std::make_shared<CBlock>();
     CBlock& block = *blockptr;
-    if (!DecodeHexBlk(block, request.params[0].get_str())) {
-        throw JSONRPCError(RPC_DESERIALIZATION_ERROR, "Block decode failed");
-    }
+    // if (!DecodeHexBlk(block, request.params[0].get_str())) {
+    //     throw JSONRPCError(RPC_DESERIALIZATION_ERROR, "Block decode failed");
+    // }
 
-    if (block.vtx.empty() || !block.vtx[0]->IsCoinBase()) {
-        throw JSONRPCError(RPC_DESERIALIZATION_ERROR, "Block does not start with a coinbase");
-    }
+    // if (block.vtx.empty() || !block.vtx[0]->IsCoinBase()) {
+    //     throw JSONRPCError(RPC_DESERIALIZATION_ERROR, "Block does not start with a coinbase");
+    // }
 
     uint256 hash = block.GetHash();
     bool fBlockPresent = false;
